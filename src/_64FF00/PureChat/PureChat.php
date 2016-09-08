@@ -450,6 +450,7 @@ class PureChat extends PluginBase
     {
         // TODO
         $string = str_replace("{display_name}", $player->getDisplayName(), $string);
+        $string = str_replace("{user_name}", $player->getName(), $string);
 
         if($message === null)
             $message = "";
