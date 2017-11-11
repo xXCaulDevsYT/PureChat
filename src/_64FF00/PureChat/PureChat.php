@@ -70,9 +70,10 @@ class PureChat extends PluginBase
      * @param Command $cmd
      * @param string $label
      * @param array $args
+	 *
+	 * @return bool
      */
-    public function onCommand(CommandSender $sender, Command $cmd, $label, array $args)
-    {
+    public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args) : bool{
         switch(strtolower($cmd->getName()))
         {
             case "setformat":
@@ -345,11 +346,11 @@ class PureChat extends PluginBase
 
                     if($factionsPro !== null)
                     {
-                        if(version_compare($factionsPro->getDescription()->getVersion(), "1.5b1") === -1)
+                        if(version_compare($factionsPro->getDescription()->getVersion(), "1.4.0") === -1)
                         {
                             $this->factionsAPI = new FactionsProOld();
 
-                            $this->getLogger()->notice("FactionsPro-OLD support enabled.");
+                            $this->getLogger()->notice("FactionsPro < 1.4 support enabled.");
 
                             break;
                         }
@@ -357,7 +358,7 @@ class PureChat extends PluginBase
                         {
                             $this->factionsAPI = new FactionsProNew();
 
-                            $this->getLogger()->notice("FactionsPro-NEW support enabled.");
+                            $this->getLogger()->notice("FactionsPro >= 1.4 support enabled.");
 
                             break;
                         }
@@ -445,7 +446,6 @@ class PureChat extends PluginBase
     {
         // TODO
         $string = str_replace("{display_name}", $player->getDisplayName(), $string);
-        $string = str_replace("{user_name}", $player->getName(), $string);
 
         if($message === null)
             $message = "";

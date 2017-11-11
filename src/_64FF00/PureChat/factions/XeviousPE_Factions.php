@@ -2,7 +2,9 @@
 
 namespace _64FF00\PureChat\factions;
 
+use _64FF00\XeviousPE_Factions\Tribble;
 use pocketmine\Player;
+use pocketmine\plugin\Plugin;
 use pocketmine\Server;
 
 class XeviousPE_Factions implements FactionsInterface
@@ -21,9 +23,9 @@ class XeviousPE_Factions implements FactionsInterface
     */
 
     /**
-     * @return null|\pocketmine\plugin\Plugin
+     * @return Tribble|Plugin|null
      */
-    public function getAPI()
+    public function getAPI() : ?Plugin
     {
         return Server::getInstance()->getPluginManager()->getPlugin("XeviousPE-Factions");
     }
@@ -32,7 +34,7 @@ class XeviousPE_Factions implements FactionsInterface
      * @param Player $player
      * @return mixed
      */
-    public function getPlayerFaction(Player $player)
+    public function getPlayerFaction(Player $player) : string
     {
         return $this->getAPI()->getProvider()->getPlayerFaction($player->getName());
     }
@@ -41,8 +43,9 @@ class XeviousPE_Factions implements FactionsInterface
      * @param Player $player
      * @return string
      */
-    public function getPlayerRank(Player $player)
+    public function getPlayerRank(Player $player) : string
     {
-        // TODO
+    	//TODO
+        return '';
     }
 }

@@ -3,6 +3,7 @@
 namespace _64FF00\PureChat\factions;
 
 use pocketmine\Player;
+use pocketmine\plugin\Plugin;
 
 interface FactionsInterface
 {
@@ -19,9 +20,9 @@ interface FactionsInterface
           888  888    "Y8888P"        888  888        888        "Y8888P"   "Y8888P"
     */
 
-    public function getAPI();
+    public function getAPI() : ?Plugin;
 
-    public function getPlayerFaction(Player $player);
+    public function getPlayerFaction(Player $player) : string;
 
-    public function getPlayerRank(Player $player);
+    public function getPlayerRank(Player $player) : string;
 }

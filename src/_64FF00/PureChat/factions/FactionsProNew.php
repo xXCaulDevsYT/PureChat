@@ -2,7 +2,9 @@
 
 namespace _64FF00\PureChat\factions;
 
+use FactionsPro\FactionMain;
 use pocketmine\Player;
+use pocketmine\plugin\Plugin;
 use pocketmine\Server;
 
 class FactionsProNew implements FactionsInterface
@@ -21,9 +23,9 @@ class FactionsProNew implements FactionsInterface
     */
 
     /**
-     * @return null|\pocketmine\plugin\Plugin
+     * @return FactionMain|Plugin|null
      */
-    public function getAPI()
+    public function getAPI() : ?Plugin
     {
         return Server::getInstance()->getPluginManager()->getPlugin("FactionsPro");
     }
@@ -32,33 +34,27 @@ class FactionsProNew implements FactionsInterface
      * @param Player $player
      * @return string
      */
-    public function getPlayerFaction(Player $player)
+    public function getPlayerFaction(Player $player) : string
     {
-        return $this->getAPI()->getSession($player)->getFaction();
+        return $this->getAPI()->getFaction($player->getName());
     }
 
     /**
      * @param Player $player
      * @return string
      */
-    public function getPlayerRank(Player $player)
+    public function getPlayerRank(Player $player) : string
     {
-        if($this->getAPI()->getSession($player)->inFaction())
+        if($this->getAPI()->isInFaction($player->getName()))
         {
-            if($this->getAPI()->getSession($player)->isOfficer()) {
+            if($this->getAPI()->isOfficer($player->getName())) {
                 return '*';
             }
-            elseif($this->getAPI()->getSession($player)->isLeader())
+            if($this->getAPI()->isLeader($player->getName()))
             {
                 return '**';
             }
-            else
-            {
-                return '';
-            }
         }
-
-        // TODO
         return '';
     }
 }
