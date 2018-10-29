@@ -29,7 +29,7 @@ class PureChat extends PluginBase
           888  888    "Y8888P"        888  888        888        "Y8888P"   "Y8888P"
     */
 
-    const MAIN_PREFIX = "\x5b\x50\x75\x72\x65\x43\x68\x61\x74\x3a\x36\x34\x46\x46\x30\x30\x5d";
+    const MAIN_PREFIX = "§l§bRANKS§r";
 
     /** @var Config $config */
     private $config;
@@ -80,7 +80,7 @@ class PureChat extends PluginBase
 
                 if(count($args) < 3)
                 {
-                    $sender->sendMessage(TextFormat::GREEN . self::MAIN_PREFIX . " Usage: /setformat <group> <world> <format>");
+                    $sender->sendMessage(TextFormat::GREEN . self::MAIN_PREFIX . " §cUsage: §e/setformat <rank> <world> <format>");
 
                     return true;
                 }
@@ -89,7 +89,7 @@ class PureChat extends PluginBase
 
                 if($group === null)
                 {
-                    $sender->sendMessage(TextFormat::RED . self::MAIN_PREFIX . " Group " . $args[0] . "does NOT exist.");
+                    $sender->sendMessage(TextFormat::RED . self::MAIN_PREFIX . " Rank " . $args[0] . "does NOT exist.");
 
                     return true;
                 }
@@ -102,7 +102,7 @@ class PureChat extends PluginBase
                     $level = $this->getServer()->getLevelByName($args[1]);
 
                     if ($level === null) {
-                        $sender->sendMessage(TextFormat::RED . self::MAIN_PREFIX . " Invalid World Name!");
+                        $sender->sendMessage(TextFormat::RED . self::MAIN_PREFIX . " Could Not Find World by that Name!");
 
                         return true;
                     }
@@ -114,7 +114,7 @@ class PureChat extends PluginBase
 
                 $this->setOriginalChatFormat($group, $chatFormat, $levelName);
 
-                $sender->sendMessage(TextFormat::GREEN . self::MAIN_PREFIX . " You set the chat format of the group to " . $chatFormat . ".");
+                $sender->sendMessage(TextFormat::GREEN . self::MAIN_PREFIX . " §6You set the chat format of the group to§r " . $chatFormat . ".");
 
                 break;
 
@@ -122,7 +122,7 @@ class PureChat extends PluginBase
 
                 if(count($args) < 3)
                 {
-                    $sender->sendMessage(TextFormat::GREEN . self::MAIN_PREFIX . " Usage: /setnametag <group> <world> <format>");
+                    $sender->sendMessage(TextFormat::GREEN . self::MAIN_PREFIX . " §cUsage: §e/setnametag <rank> <world> <format>");
 
                     return true;
                 }
@@ -131,7 +131,7 @@ class PureChat extends PluginBase
 
                 if($group === null)
                 {
-                    $sender->sendMessage(TextFormat::RED . self::MAIN_PREFIX . " Group " . $args[0] . "does NOT exist.");
+                    $sender->sendMessage(TextFormat::RED . self::MAIN_PREFIX . " Rank " . $args[0] . "does NOT exist.");
 
                     return true;
                 }
@@ -144,7 +144,7 @@ class PureChat extends PluginBase
                     $level = $this->getServer()->getLevelByName($args[1]);
 
                     if ($level === null) {
-                        $sender->sendMessage(TextFormat::RED . self::MAIN_PREFIX . " Invalid World Name!");
+                        $sender->sendMessage(TextFormat::RED . self::MAIN_PREFIX . " Could Not Find World by that Name!");
 
                         return true;
                     }
@@ -156,7 +156,7 @@ class PureChat extends PluginBase
 
                 $this->setOriginalNametag($group, $nameTag, $levelName);
 
-                $sender->sendMessage(TextFormat::GREEN . self::MAIN_PREFIX . " You set the nametag of the group to " . $nameTag . ".");
+                $sender->sendMessage(TextFormat::GREEN . self::MAIN_PREFIX . " §6You set the nametag of the group to§r " . $nameTag . ".");
 
                 break;
 
@@ -172,7 +172,7 @@ class PureChat extends PluginBase
 
                 if(!isset($args[0]))
                 {
-                    $sender->sendMessage(TextFormat::GREEN . self::MAIN_PREFIX . " Usage: /setprefix <prefix>");
+                    $sender->sendMessage(TextFormat::GREEN . self::MAIN_PREFIX . " §cUsage: §e/setprefix <prefix>");
 
                     return true;
                 }
@@ -183,7 +183,7 @@ class PureChat extends PluginBase
 
                 $this->setPrefix($prefix, $sender, $levelName);
 
-                $sender->sendMessage(TextFormat::GREEN . self::MAIN_PREFIX . " You set your prefix to " . $prefix . ".");
+                $sender->sendMessage(TextFormat::GREEN . self::MAIN_PREFIX . " §6You set your prefix to§r " . $prefix . ".");
 
                 break;
 
@@ -198,7 +198,7 @@ class PureChat extends PluginBase
 
                 if(!isset($args[0]))
                 {
-                    $sender->sendMessage(TextFormat::GREEN . self::MAIN_PREFIX . " Usage: /setsuffix <suffix>");
+                    $sender->sendMessage(TextFormat::GREEN . self::MAIN_PREFIX . " §cUsage: §e/setsuffix <suffix>");
 
                     return true;
                 }
@@ -209,7 +209,7 @@ class PureChat extends PluginBase
 
                 $this->setSuffix($suffix, $sender, $levelName);
 
-                $sender->sendMessage(TextFormat::GREEN . self::MAIN_PREFIX . " You set your suffix to " . $suffix . ".");
+                $sender->sendMessage(TextFormat::GREEN . self::MAIN_PREFIX . " §6You set your suffix to§r " . $suffix . ".");
 
                 break;
         }
@@ -334,7 +334,7 @@ class PureChat extends PluginBase
 
         if($factionsPluginName === null)
         {
-            $this->getLogger()->notice("No valid factions plugin in default-factions-plugin node was found. Disabling factions plugin support.");
+            $this->getLogger()->notice("[PureRanksPlus] Go to the Plugins config.yml and add your factions plugin name for faction support!");
         }
         else
         {
